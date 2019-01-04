@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded',function () {
+window.addEventListener('load',function () {
     /*获取所有li*/
     var headerInnerlis = document.querySelectorAll('.nav li');
     //获取小箭头
@@ -19,13 +19,16 @@ window.addEventListener('DOMContentLoaded',function () {
 
 
 
-    //头部部分
+        //头部部分
     headerHandl();
     function headerHandl() {
         //设置down的默认宽度100%
         downNodes[0].style.width = '100%';
         //设置小箭头初始位置
-        arrowNode.style.left=headerInnerlis[0].getBoundingClientRect().left+ headerInnerlis[0].offsetWidth/2 -arrowWidthNode*2+'px';
+        arrowNode.style.left = headerInnerlis[0].getBoundingClientRect().left + headerInnerlis[0].offsetWidth/2 - arrowWidthNode + 'px';
+        console.log(arrowNode.style.left)
+        console.log(headerInnerlis[0].getBoundingClientRect().left)
+
         //所有Li添加点击事件
         for (var i = 0; i < headerInnerlis.length; i++) {
             //给所有li添加一个index属性
@@ -35,8 +38,8 @@ window.addEventListener('DOMContentLoaded',function () {
                 downNodes[num].style.width = '';
                 num = this.index;
                 move(num)
-                console.log(num)
-                console.log(arrowWidthNode)
+                // console.log(num)
+                // console.log(arrowWidthNode)
             }
         }
     }
@@ -47,8 +50,8 @@ window.addEventListener('DOMContentLoaded',function () {
         downNodes[num].style.width = '100%';
         // console.log(this.index)
         //小箭头移动
-        arrowNode.style.transition= 'left 1s';
-        arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left+headerInnerlis[num].offsetWidth/2 - arrowWidthNode+'px';
+        arrowNode.style.transition= '1s ';
+        arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left +headerInnerlis[num].offsetWidth/2 - arrowWidthNode +'px';
         //内容区移动
         contentInnerNode.style.top = num * -contentH + 'px';
         console.log(contentH)
@@ -117,9 +120,12 @@ window.addEventListener('DOMContentLoaded',function () {
     //解决打开控制台导致浏览器大小问题
     window.onresize = function () {
         //解决打开控制台小箭头位置
+
         arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left + headerInnerlis[num].offsetWidth/2 - arrowWidthNode+'px';
         //解决打开控制台内容区位置
+        console.log(arrowNode.offsetLeft)
         contentInnerNode.style.top = num * -contentH+'px';
+        
     }
 
 })

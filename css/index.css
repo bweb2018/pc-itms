@@ -18,6 +18,7 @@ img{display: block;}
     background: yellow;
     position: relative;
     z-index: 10;
+    width:100%;
 }
 .header-inner{
     width:1100px;
@@ -62,6 +63,7 @@ img{display: block;}
     width:21px;
     height:11px;
     position: absolute;
+    left:0;
     bottom: -11px;
     background: url("../img/arrow.png");
     background-repeat: no-repeat;
