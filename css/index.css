@@ -1,5 +1,5 @@
 /*reset css*/
-html,body{height: 100%;overflow: hidden;}
+html,body{height: 100%;overflow: hidden}
 html,body,h1,h2,h3,h4,h5,h6,p,ul,li{margin: 0px;padding: 0px;font: 14px "微软雅黑";}
 a{text-decoration: none;display: block;}
 li{list-style: none;}
@@ -11,13 +11,13 @@ img{display: block;}
 
 
 #wrap{
+    position: relative;
     height:100%;
-    background: yellowgreen;
 }
 .header-wrap{
-    background: yellowgreen;
+    background: yellow;
     position: relative;
-
+    z-index: 10;
 }
 .header-inner{
     width:1100px;
@@ -68,5 +68,36 @@ img{display: block;}
     background: url("../img/arrow.png");
     background-repeat: no-repeat;
     transition: left 1s ;
-
 }
+/*內容区*/
+.content{
+    position: absolute;
+    top:80px;
+    left:0;
+    right:0;
+    bottom:0;
+}
+.content-inner{
+    position: absolute;
+    left:0;
+    top:0;
+    height: 500%;
+    width: 100%;
+    transition: top 1s;
+}
+
+.content-inner>li{
+    position: relative;
+    height:20%;
+    background: yellow;
+}
+.content-inner section{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50% ,-50%);
+    width: 1100px;
+    height:520px;
+    background: pink;
+}
+
