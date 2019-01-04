@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded',function () {
     var headerInnerlis = document.querySelectorAll('.nav li');
     //获取小箭头
     var arrowNode = document.querySelector('.arrows');
-    var arrowWidthNode=arrowNode.offsetWidth/2;
+    var arrowWidthNode = arrowNode.offsetWidth/2;
     //获取所有down
     var downNodes = document.querySelectorAll('.down');
     //获取content
@@ -20,12 +20,12 @@ window.addEventListener('DOMContentLoaded',function () {
 
 
     //头部部分
-    headerHandl()
+    headerHandl();
     function headerHandl() {
         //设置down的默认宽度100%
         downNodes[0].style.width = '100%';
         //设置小箭头初始位置
-        arrowNode.style.left=headerInnerlis[0].getBoundingClientRect().left+headerInnerlis[0].offsetWidth/2-arrowWidthNode+'px';
+        arrowNode.style.left=headerInnerlis[0].getBoundingClientRect().left+ headerInnerlis[0].offsetWidth/2 -arrowWidthNode*2+'px';
         //所有Li添加点击事件
         for (var i = 0; i < headerInnerlis.length; i++) {
             //给所有li添加一个index属性
@@ -36,6 +36,7 @@ window.addEventListener('DOMContentLoaded',function () {
                 num = this.index;
                 move(num)
                 console.log(num)
+                console.log(arrowWidthNode)
             }
         }
     }
@@ -46,9 +47,12 @@ window.addEventListener('DOMContentLoaded',function () {
         downNodes[num].style.width = '100%';
         // console.log(this.index)
         //小箭头移动
+        arrowNode.style.transition= 'left 1s';
         arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left+headerInnerlis[num].offsetWidth/2 - arrowWidthNode+'px';
         //内容区移动
-        contentInnerNode.style.top = num * -contentH+'px';
+        contentInnerNode.style.top = num * -contentH + 'px';
+        console.log(contentH)
+        console.log(num)
 
     }
 
@@ -62,7 +66,7 @@ window.addEventListener('DOMContentLoaded',function () {
            function wheel(event) {
                event = event||window.event;
                //清除上次定时器
-               clearTimeout(timer)；
+               clearTimeout(timer)
                //清除上次的样式
                downNodes[num].style.width = '';
                timer = setTimeout(function () {
@@ -103,19 +107,17 @@ window.addEventListener('DOMContentLoaded',function () {
                        }
                        break;
                }
-
-               return false;
                },150);
+               //禁止默认行为
+               event.preventDefault && event.preventDefault();
+               return false;
            }
-
-        //禁止默认行为
-        event.preventDefault && event.preventDefault();
     }
 
     //解决打开控制台导致浏览器大小问题
     window.onresize = function () {
         //解决打开控制台小箭头位置
-        arrowNode.style.left=headerInnerlis[num].getBoundingClientRect().left+headerInnerlis[num].offsetWidth/2-arrowWidthNode+'px';
+        arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left + headerInnerlis[num].offsetWidth/2 - arrowWidthNode+'px';
         //解决打开控制台内容区位置
         contentInnerNode.style.top = num * -contentH+'px';
     }
