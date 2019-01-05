@@ -139,34 +139,69 @@ window.addEventListener('DOMContentLoaded',function () {
     var firstCarouselNodes = document.querySelectorAll('.homme-carousel li');
     //  获取小圆点
     var firstDotNodes = document.querySelectorAll('.homme-dot li');
-
+    //  获取home
+    var hommeNode = document.querySelector('.homme');
     fristHandl();
     function fristHandl() {
 
-        var num = 0;
-
+        var lastIndex = 0;
+        var nowIndex = 0;
+        var lastTimer = 0;
+        var timer = null;
         for (var i = 0; i < firstDotNodes.length; i++) {
             firstDotNodes[i].index = i;
             firstDotNodes[i].onclick = function () {
+                nowIndex = this.index;
+                //设置轮
+            var nowTimer = Date.now();
+            if(nowTimer - lastTimer <= 2000) return;
+                lastTimer = nowTimer;
+            if(nowIndex === lastIndex) return;
+
+            //    向右操作
+            if(nowIndex > lastIndex){
+                firstCarouselNodes[nowIndex].className = 'commTitle rightShow';
+                firstCarouselNodes[lastIndex].className = 'commTitle leftHide';
+            }else {
+                firstCarouselNodes[lastIndex].className = 'commTitle rightHide';
+                firstCarouselNodes[nowIndex].className = 'commTitle leftShow';
+            }
+
                 //清除上次小圆点的背景
-                firstDotNodes[num].className = '';
+                firstDotNodes[lastIndex].className = '';
                 // console.log(firstDotNodes[num])
                 //改变当前小圆点显示背景颜色
                 this.className='active';
-                num = this.index;
-
-                //设置轮播
-                
-
+                lastIndex = nowIndex;
 
             }
         }
 
+        //homme鼠标移入
+        hommeNode.onmouseenter = function () {
+            clearInterval(timer);
+        }
 
-
-
-
-
+        //homme鼠标移出
+        hommeNode.onmouseleave = autoPlay;
+        autoPlay();
+        function autoPlay() {
+            timer = setInterval(function () {
+                nowIndex++;
+                if(nowIndex >= 4){
+                    nowIndex = 0;
+                }
+                firstCarouselNodes[nowIndex].className = 'commTitle rightShow';
+                firstCarouselNodes[lastIndex].className = 'commTitle leftHide';
+                //清除上次小圆点的背景
+                firstDotNodes[lastIndex].className = '';
+                // console.log(firstDotNodes[num])
+                //改变当前小圆点显示背景颜色
+                firstDotNodes[nowIndex].className='active';
+                //同步
+                lastIndex = nowIndex;
+            },2500)
+        }
 
     }
 
