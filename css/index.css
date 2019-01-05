@@ -9,13 +9,16 @@ img{display: block;}
 .clearfix{*zoom: 1;}
 .clearfix:after{content: "";display: block;clear: both;}
 
-
+/*公共样式*/
+.commTitle{
+    color:#009ee0; font-size:80px; line-height:0.8;
+    font-weight:bold; letter-spacing:-5px;
+}
 #wrap{
     position: relative;
     height:100%;
 }
 .header-wrap{
-    background: yellow;
     position: relative;
     z-index: 10;
     width:100%;
@@ -67,6 +70,7 @@ img{display: block;}
     bottom: -11px;
     background: url("../img/arrow.png");
     background-repeat: no-repeat;
+    transition: left 1s;
 }
 /*內容区*/
 .content{
@@ -88,7 +92,22 @@ img{display: block;}
 .content-inner>li{
     position: relative;
     height:20%;
-    background: yellow;
+    background-repeat: no-repeat;
+}
+.content-inner>li:nth-child(1){
+    background: url("../img/bg1.jpg");
+}
+.content-inner>li:nth-child(2){
+    background: url("../img/bg2.jpg");
+}
+.content-inner>li:nth-child(3){
+    background: url("../img/bg3.jpg");
+}
+.content-inner>li:nth-child(4){
+    background: url("../img/bg4.jpg");
+}
+.content-inner>li:nth-child(5){
+    background: url("../img/bg5.jpg");
 }
 .content-inner section{
     position: absolute;
@@ -97,6 +116,127 @@ img{display: block;}
     transform: translate(-50% ,-50%);
     width: 1100px;
     height:520px;
-    background: pink;
 }
 
+/*第一屏*/
+
+/*轮播*/
+.homme .section{
+
+}
+.homme-carousel{
+    position: relative;
+    height:100%;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+.homme-carousel>li{
+    position: absolute;
+    top:0;
+    left:0;
+    color: white;
+    height:100%;
+    width: 100%;
+    text-align: center;
+    line-height: 520px;
+    visibility: hidden;
+}
+.homme-carousel .active{
+    visibility: visible;
+}
+.homme-carousel>li:nth-child(1){
+     background:#dc6c5f;
+ }
+.homme-carousel>li:nth-child(2){
+    background:#95dc84;
+}
+.homme-carousel>li:nth-child(3){
+    background:#64b9d2;
+}
+.homme-carousel>li:nth-child(4){
+    background:#000000;
+}
+
+
+/*第一屏下边小圆点*/
+.homme-dot{
+    position: absolute;
+    left:50%;
+    bottom: 0;
+    transform: translate(-50%);
+}
+
+.homme-dot>li{
+    float: left;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.5);
+    margin: 2px;
+    box-shadow: 0 0 4px rgba(25,25,25,0.8);
+}
+.homme-dot .active{
+    background: yellow !important;
+}
+
+/*左边隐藏*/
+
+.homme-carousel .rightHide{
+    visibility: hidden;
+    animation: rightHide 2s linear;
+}
+.homme-carousel .rightShow{
+    visibility: visible;
+    animation: rightShow 2s linear;
+}
+
+.homme-carousel .leftHide{
+    visibility: hidden;
+    animation: leftHide 2s linear;
+}
+.homme-carousel .leftShow{
+    visibility: visible;
+    animation: leftShow 2s linear;
+}
+
+
+
+
+
+
+
+
+/*定义动画*/
+@keyframes rightShow{
+    0%{visibility: hidden;transform: translateZ(-200px);}
+    50%{transform: translateX(40%) rotateY(-30deg) scale(.8);}
+    100%{
+
+        visibility: visible;
+    }
+}
+
+@keyframes leftShow{
+    0%{visibility: hidden;transform: translateZ(-200px);}
+    50%{transform: translateX(-40%) rotateY(30deg) scale(.8);}
+    100%{
+
+        visibility: visible;
+    }
+}
+
+@keyframes rightHide{
+
+    0%{visibility: visible;}
+    50%{transform: translateX(40%) rotateY(-30deg) scale(.8);}
+    100%{
+        transform: translateZ(-200px);
+        visibility: hidden;}
+}
+@keyframes leftHide{
+    0%{visibility: visible;}
+    50%{transform: translateX(-40%) rotateY(30deg) scale(.8);}
+    100%{
+        transform: translateZ(-200px);
+        visibility: hidden;}
+}

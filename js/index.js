@@ -1,4 +1,4 @@
-window.addEventListener('load',function () {
+window.addEventListener('DOMContentLoaded',function () {
     /*获取所有li*/
     var headerInnerlis = document.querySelectorAll('.nav li');
     //获取小箭头
@@ -22,12 +22,18 @@ window.addEventListener('load',function () {
         //头部部分
     headerHandl();
     function headerHandl() {
-        //设置down的默认宽度100%
-        downNodes[0].style.width = '100%';
-        //设置小箭头初始位置
-        arrowNode.style.left = headerInnerlis[0].getBoundingClientRect().left + headerInnerlis[0].offsetWidth/2 - arrowWidthNode + 'px';
-        console.log(arrowNode.style.left)
-        console.log(headerInnerlis[0].getBoundingClientRect().left)
+        var img = new Image();
+        img.src = './img/home.png';
+        img.onload = function () {
+            //设置down的默认宽度100%
+            downNodes[0].style.width = '100%';
+            //设置小箭头初始位置
+            arrowNode.style.left = headerInnerlis[0].getBoundingClientRect().left + headerInnerlis[0].offsetWidth/2 - arrowWidthNode + 'px';
+
+        }
+       //
+       // console.log(arrowNode.style.left)
+       //  console.log(headerInnerlis[0].getBoundingClientRect().left)
 
         //所有Li添加点击事件
         for (var i = 0; i < headerInnerlis.length; i++) {
@@ -50,7 +56,6 @@ window.addEventListener('load',function () {
         downNodes[num].style.width = '100%';
         // console.log(this.index)
         //小箭头移动
-        arrowNode.style.transition= '1s ';
         arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left +headerInnerlis[num].offsetWidth/2 - arrowWidthNode +'px';
         //内容区移动
         contentInnerNode.style.top = num * -contentH + 'px';
@@ -127,6 +132,52 @@ window.addEventListener('load',function () {
         contentInnerNode.style.top = num * -contentH+'px';
         
     }
+
+
+    //  第一屏部分
+    //  获取元素
+    var firstCarouselNodes = document.querySelectorAll('.homme-carousel li');
+    //  获取小圆点
+    var firstDotNodes = document.querySelectorAll('.homme-dot li');
+
+    fristHandl();
+    function fristHandl() {
+
+        var num = 0;
+
+        for (var i = 0; i < firstDotNodes.length; i++) {
+            firstDotNodes[i].index = i;
+            firstDotNodes[i].onclick = function () {
+                //清除上次小圆点的背景
+                firstDotNodes[num].className = '';
+                // console.log(firstDotNodes[num])
+                //改变当前小圆点显示背景颜色
+                this.className='active';
+                num = this.index;
+
+                //设置轮播
+                
+
+
+            }
+        }
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
 
 })
 
