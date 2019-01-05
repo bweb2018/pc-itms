@@ -63,7 +63,6 @@ window.addEventListener('DOMContentLoaded',function () {
         console.log(num)
 
     }
-
     //内容区
     contentHandle();
     function contentHandle() {
@@ -159,11 +158,11 @@ window.addEventListener('DOMContentLoaded',function () {
 
             //    向右操作
             if(nowIndex > lastIndex){
-                firstCarouselNodes[nowIndex].className = 'commTitle rightShow';
-                firstCarouselNodes[lastIndex].className = 'commTitle leftHide';
+                firstCarouselNodes[nowIndex].className = 'commonTitle rightShow';
+                firstCarouselNodes[lastIndex].className = 'commonTitle leftHide';
             }else {
-                firstCarouselNodes[lastIndex].className = 'commTitle rightHide';
-                firstCarouselNodes[nowIndex].className = 'commTitle leftShow';
+                firstCarouselNodes[lastIndex].className = 'commonTitle rightHide';
+                firstCarouselNodes[nowIndex].className = 'commonTitle leftShow';
             }
 
                 //清除上次小圆点的背景
@@ -190,8 +189,8 @@ window.addEventListener('DOMContentLoaded',function () {
                 if(nowIndex >= 4){
                     nowIndex = 0;
                 }
-                firstCarouselNodes[nowIndex].className = 'commTitle rightShow';
-                firstCarouselNodes[lastIndex].className = 'commTitle leftHide';
+                firstCarouselNodes[nowIndex].className = 'commonTitle rightShow';
+                firstCarouselNodes[lastIndex].className = 'commonTitle leftHide';
                 //清除上次小圆点的背景
                 firstDotNodes[lastIndex].className = '';
                 // console.log(firstDotNodes[num])
