@@ -141,8 +141,8 @@ window.addEventListener('DOMContentLoaded',function () {
     var firstDotNodes = document.querySelectorAll('.homme-dot li');
     //  获取home
     var hommeNode = document.querySelector('.homme');
-    fristHandl();
-    function fristHandl() {
+    firstScreenHandl();
+    function firstScreenHandl() {
 
         var lastIndex = 0;
         var nowIndex = 0;
