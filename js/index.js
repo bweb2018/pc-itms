@@ -135,15 +135,14 @@ window.addEventListener('DOMContentLoaded',function () {
 
 
     //  第一屏部分
-    //  获取元素
-    var firstCarouselNodes = document.querySelectorAll('.homme-carousel li');
-    //  获取小圆点
-    var firstDotNodes = document.querySelectorAll('.homme-dot li');
-    //  获取home
-    var hommeNode = document.querySelector('.homme');
     firstScreenHandl();
     function firstScreenHandl() {
-
+        //  获取元素
+        var firstCarouselNodes = document.querySelectorAll('.homme-carousel li');
+        //  获取小圆点
+        var firstDotNodes = document.querySelectorAll('.homme-dot li');
+        //  获取home
+        var hommeNode = document.querySelector('.homme');
         var lastIndex = 0;
         var nowIndex = 0;
         var lastTimer = 0;
