@@ -19,8 +19,6 @@ window.addEventListener('DOMContentLoaded',function () {
     //定义一个计数器
     var num = 0;
 
-
-
         //头部部分
     headerHandl();
     function headerHandl() {
@@ -31,7 +29,6 @@ window.addEventListener('DOMContentLoaded',function () {
             downNodes[0].style.width = '100%';
             //设置小箭头初始位置
             arrowNode.style.left = headerInnerlis[0].getBoundingClientRect().left + headerInnerlis[0].offsetWidth/2 - arrowWidthNode + 'px';
-
         }
        //
        // console.log(arrowNode.style.left)
@@ -72,11 +69,18 @@ window.addEventListener('DOMContentLoaded',function () {
         //内容区移动
         contentInnerNode.style.top = num * -contentH + 'px';
         //内容区右侧小圆点移动
-        contentRightDotNodes[num].className = 'active';
-        // console.log(contentRightDotNodes[num])
-        // console.log(contentH)
-        // console.log(num)
+        rightDot();
+    }
 
+    //内容区小圆点
+    function rightDot() {
+        for (var i = 0 ; i < contentRightDotNodes.length ; i++) {
+            // num = i;
+            // num = this.index;
+            contentRightDotNodes[i].className = '';console.log(num)
+
+        }
+        contentRightDotNodes[num].className = 'active';console.log(num)
     }
     //内容区
     contentHandle();
@@ -87,57 +91,55 @@ window.addEventListener('DOMContentLoaded',function () {
            //创建wheel函数
            function wheel(event) {
                event = event||window.event;
-               //清除上次定时器
-               clearTimeout(timer)
-               //清除上次的样式
-               contentRightDotNodes[num].className = '';
-               downNodes[num].style.width = '';
-               timer = setTimeout(function () {
-               var flag='';
-               //ie/chrome
-               if(event.wheelDelta){
-                   if(event.wheelDelta>0){
-                       flag = 'up';
-                       console.log('up')
-                   }else {
-                       flag = 'down';
-                       console.log('down')
-                   }
-                   //    firefox
-               }else if(event.detail){
-                   if(event.detail<0){
-                       if(event.detail<0){
-                           flag = 'up';
-                       }else {
-                           flag = 'down';
+                   //清除上次定时器
+                   clearTimeout(timer)
+                   //清除上次的样式
+                   rightDot();
+                   downNodes[num].style.width = '';
+                   timer = setTimeout(function () {
+                       var flag='';
+                       //ie/chrome
+                       if(event.wheelDelta){
+                           if(event.wheelDelta>0){
+                               flag = 'up';
+                               console.log('up')
+                           }else {
+                               flag = 'down';
+                               console.log('down')
+                           }
+                           //    firefox
+                       }else if(event.detail){
+                           if(event.detail<0){
+                               if(event.detail<0){
+                                   flag = 'up';
+                               }else {
+                                   flag = 'down';
+                               }
+                           }
                        }
-                   }
-               }
-               //判断flag
-               switch (flag){
-                   case 'up':
-                       if(num > 0){
-                           num--;
-                           move(num);
-                           console.log(num)
+                       //判断flag
+                       switch (flag){
+                           case 'up':
+                               if(num > 0){
+                                   num--;
+                                   move(num);
+                                   console.log(num)
+                               }
+                               break;
+                           case 'down':
+                               if(num < headerInnerlis.length-1){
+                                   num++;
+                                   move(num);
+                                   // console.log(num)
+                               }
+                               break;
                        }
-                       break;
-                   case 'down':
-                       if(num < headerInnerlis.length-1){
-                           num++;
-                           move(num);
-                           console.log(num)
-                       }
-                       break;
-               }
-               },150);
+                   },150);
+
                //禁止默认行为
                event.preventDefault && event.preventDefault();
                return false;
            }
-
-
-
     }
 
     //解决打开控制台导致浏览器大小问题
@@ -146,7 +148,7 @@ window.addEventListener('DOMContentLoaded',function () {
 
         arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left + headerInnerlis[num].offsetWidth/2 - arrowWidthNode+'px';
         //解决打开控制台内容区位置
-        console.log(arrowNode.offsetLeft)
+        // console.log(arrowNode.offsetLeft)
         contentInnerNode.style.top = num * -contentH+'px';
         
     }
