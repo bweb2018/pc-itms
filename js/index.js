@@ -10,6 +10,8 @@ window.addEventListener('DOMContentLoaded',function () {
     var contentNode = document.querySelector('.content');
     //获取ul
     var contentInnerNode = document.querySelector('.content-inner');
+    //获取内容区右侧小圆点
+    var contentRightDotNodes = document.querySelectorAll('.content .content-dot li')
     //获取contentNode高度
     var contentH = contentNode.offsetHeight;
     //定义时间接受变量
@@ -39,13 +41,23 @@ window.addEventListener('DOMContentLoaded',function () {
         for (var i = 0; i < headerInnerlis.length; i++) {
             //给所有li添加一个index属性
             headerInnerlis[i].index = i;
+            contentRightDotNodes[i].index = i;
             headerInnerlis[i].onclick = function () {
                 //清除上次的样式
+                contentRightDotNodes[num].className = '';
                 downNodes[num].style.width = '';
                 num = this.index;
                 move(num)
                 // console.log(num)
                 // console.log(arrowWidthNode)
+            }
+            //内容区右侧小圆点移动
+            contentRightDotNodes[i].onclick = function () {
+                //清除上次的样式
+                contentRightDotNodes[num].className = '';
+                downNodes[num].style.width = '';
+                num = this.index;
+                move(num)
             }
         }
     }
@@ -59,8 +71,11 @@ window.addEventListener('DOMContentLoaded',function () {
         arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left +headerInnerlis[num].offsetWidth/2 - arrowWidthNode +'px';
         //内容区移动
         contentInnerNode.style.top = num * -contentH + 'px';
-        console.log(contentH)
-        console.log(num)
+        //内容区右侧小圆点移动
+        contentRightDotNodes[num].className = 'active';
+        // console.log(contentRightDotNodes[num])
+        // console.log(contentH)
+        // console.log(num)
 
     }
     //内容区
@@ -75,6 +90,7 @@ window.addEventListener('DOMContentLoaded',function () {
                //清除上次定时器
                clearTimeout(timer)
                //清除上次的样式
+               contentRightDotNodes[num].className = '';
                downNodes[num].style.width = '';
                timer = setTimeout(function () {
                var flag='';
@@ -119,6 +135,9 @@ window.addEventListener('DOMContentLoaded',function () {
                event.preventDefault && event.preventDefault();
                return false;
            }
+
+
+
     }
 
     //解决打开控制台导致浏览器大小问题
