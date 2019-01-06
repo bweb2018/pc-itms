@@ -440,10 +440,6 @@ img{display: block;}
     position: absolute;
     top: 0;
     right: 0;
-
-    /*width: 260px;*/
-    /*height: 200px;*/
-    /*background-image: url("../img/about2.jpg");*/
     border:5px solid rgba(255,255,255,0.5);
     border-radius: 5px;
 }
@@ -451,9 +447,6 @@ img{display: block;}
     position: absolute;
     left: 0;
     bottom: 0;
-    /*width: 260px;*/
-    /*height: 200px;*/
-    /*background-image: url("../img/about4.jpg");*/
     border:5px solid rgba(255,255,255,0.5);
     border-radius: 5px;
 }
@@ -475,15 +468,8 @@ img{display: block;}
     width: 130px;
     height:100px;
     transition: transform 2s;
-
 }
 
-/*.about-shrink .shrink-box img{*/
-
-    /*width:130px;*/
-    /*height: 100px;*/
-/*}*/
-/*topShrink*/
 .top-shrink .shrink-box li:nth-child(1){
     background-image: url("../img/about1.jpg");
     background-repeat: no-repeat;
@@ -492,13 +478,11 @@ img{display: block;}
     background-image: url("../img/about1.jpg");
     background-repeat: no-repeat;
     background-position: right top;
-    transition: transform 2s;
 }
 .top-shrink .shrink-box .box-three{
     background-image: url("../img/about1.jpg");
     background-repeat: no-repeat;
     background-position: left bottom;
-
 }
 .top-shrink .shrink-box .box-four{
     background-image: url("../img/about1.jpg");
@@ -529,21 +513,18 @@ img{display: block;}
     background-position: right bottom;
 }
 
-
-
 .about-shrink ul:hover .box-two{
-    /*transition: transform 2s;*/
     transform: translateX(-130px);
 }
 .about-shrink ul:hover .box-three{
-    /*transition: transform 2s;*/
     transform: translateX(130px);
 }
 .about-shrink ul:hover .box-one{
-    /*transition: transform 2s;*/
     transform: translateY(130px);
 }
 .about-shrink ul:hover .box-four{
-    /*transition: transform 2s;*/
     transform: translateY(-130px);
 }
+
+
+
