@@ -120,6 +120,26 @@ img{display: block;}
     width: 1100px;
     height:520px;
 }
+/*内容区右边小圆点区*/
+
+.content-dot{
+    position: absolute;
+    top:50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+.content-dot>li{
+    /*float: left;*/
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.5);
+    margin: 2px;
+    box-shadow: 0 0 4px rgba(25,25,25,0.8);
+}
+.content-dot .active{
+    background: yellow !important;
+}
 
 /*第一屏*/
 
