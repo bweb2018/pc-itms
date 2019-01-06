@@ -11,7 +11,10 @@ window.addEventListener('DOMContentLoaded',function () {
     //获取ul
     var contentInnerNode = document.querySelector('.content-inner');
     //获取内容区右侧小圆点
-    var contentRightDotNodes = document.querySelectorAll('.content .content-dot li')
+    var contentRightDotNodes = document.querySelectorAll('.content .content-dot li');
+    //获取第五屏ul
+    var teamListsNodes = document.querySelectorAll('.team-inner .team-lists li');
+    var teamListsNode = document.querySelectorAll('.team-inner .team-lists');
     //获取contentNode高度
     var contentH = contentNode.offsetHeight;
     //定义时间接受变量
@@ -20,8 +23,8 @@ window.addEventListener('DOMContentLoaded',function () {
     var num = 0;
 
         //头部部分
-    headerHandl();
-    function headerHandl() {
+    headerHandle();
+    function headerHandle() {
         var img = new Image();
         img.src = './img/home.png';
         img.onload = function () {
@@ -155,8 +158,8 @@ window.addEventListener('DOMContentLoaded',function () {
 
 
     //  第一屏部分
-    firstScreenHandl();
-    function firstScreenHandl() {
+    firstScreenHandle();
+    function firstScreenHandle() {
         //  获取元素
         var firstCarouselNodes = document.querySelectorAll('.homme-carousel li');
         //  获取小圆点
@@ -225,11 +228,31 @@ window.addEventListener('DOMContentLoaded',function () {
     }
 
 
+   //第五屏
+    fiveScreenHandle();
+    function fiveScreenHandle() {
+        //downDon鼠标移入移出
+        fiveClick()
+        function fiveClick() {
+            for (var i = 0; i < teamListsNodes.length; i++) {
+                teamListsNodes[i].onmouseenter = function () {
+                    for (var j = 0; j < teamListsNodes.length; j++) {
 
+                        teamListsNodes[j].className = 'active'
+                    }
+                    this.className = '';
+                }
+                // 鼠标移出
+                teamListsNodes[i].onmouseleave = function () {
+                    for (var j = 0; j < teamListsNodes.length; j++) {
 
+                        teamListsNodes[j].className = ''
+                    }
+                }
+            }
 
-
-
+        }
+    }
 
 
 
