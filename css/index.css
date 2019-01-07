@@ -447,104 +447,78 @@ img{display: block;}
     width: 400px;
     margin-left: 50px;
 }
-
-.about-shrink{
+.about-inner div:nth-child(3){
     position: absolute;
     top: 50px;
-    right: 80px;
-    width: 420px;
-    height:450px;
+    left: 750px;
 }
-
-.top-shrink{
+.about-inner div:nth-child(4){
+    position: absolute;
+    top: 290px;
+    left: 600px;
+}
+.about-inner ul{
     position: absolute;
     top: 0;
-    right: 0;
-    border:5px solid rgba(255,255,255,0.5);
-    border-radius: 5px;
-}
-.bottom-shrink{
-    position: absolute;
     left: 0;
-    bottom: 0;
-    border:5px solid rgba(255,255,255,0.5);
-    border-radius: 5px;
+    width: 100%;
+    height:100%;
+    z-index: 20;
 }
-
-.about-shrink ul{
-   overflow: hidden;
-    position: absolute;
-    left: 0;
-    top: 0;
-
-}
-.box-two-wrap{
+.about-inner li{
     overflow: hidden;
     float: left;
-}
-.about-shrink ul li{
+    width: 50%;
+    height: 50%;
     overflow: hidden;
-    float: left;
-    width: 130px;
-    height:100px;
+}
+.about-inner li div{
+    height:100%;
     transition: transform 2s;
 }
-
-.top-shrink .shrink-box li:nth-child(1){
+.about-shrink-top div{
     background-image: url("../img/about1.jpg");
     background-repeat: no-repeat;
 }
-.top-shrink .shrink-box .box-two{
-    background-image: url("../img/about1.jpg");
-    background-repeat: no-repeat;
-    background-position: right top;
-}
-.top-shrink .shrink-box .box-three{
-    background-image: url("../img/about1.jpg");
-    background-repeat: no-repeat;
-    background-position: left bottom;
-}
-.top-shrink .shrink-box .box-four{
-    background-image: url("../img/about1.jpg");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-
-}
-
-/*bottomShrink*/
-.bottom-shrink .shrink-box li:nth-child(1){
+.about-shrink-bottom div{
     background-image: url("../img/about3.jpg");
     background-repeat: no-repeat;
 }
-.bottom-shrink .shrink-box .box-two{
-    background-image: url("../img/about3.jpg");
-    background-repeat: no-repeat;
-    background-position: right top;
-}
-.bottom-shrink .shrink-box .box-three{
-    background-image: url("../img/about3.jpg");
-    background-repeat: no-repeat;
-    background-position: left bottom;
 
+.shrink-box .box-two{
+    background-position: -130px 0;
 }
-.bottom-shrink .shrink-box .box-four{
-    background-image: url("../img/about3.jpg");
-    background-repeat: no-repeat;
-    background-position: right bottom;
+.shrink-box .box-three{
+    background-position: 0 -100px;
+}
+.shrink-box .box-four{
+    background-position: -130px -100px;
 }
 
-.about-shrink ul:hover .box-two{
+.shrink-box:hover .box-two{
     transform: translateX(-130px);
 }
-.about-shrink ul:hover .box-three{
+.shrink-box:hover .box-three{
     transform: translateX(130px);
 }
-.about-shrink ul:hover .box-one{
+.shrink-box:hover .box-one{
     transform: translateY(130px);
 }
-.about-shrink ul:hover .box-four{
+.shrink-box:hover .box-four{
     transform: translateY(-130px);
 }
+
+.about-line{
+    position: absolute;
+    top: -13px;
+    right: 188px;
+    width: 357px;
+    height: 998px;
+    background-image: url("../img/greenLine.png");
+    background-repeat: no-repeat;
+}
+
+
 
 /*第五屏*/
 .team-inner{
