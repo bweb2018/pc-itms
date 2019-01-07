@@ -569,3 +569,7 @@ img{display: block;}
     opacity: 0.5 ;
 }
 
+.canvas{
+    position: absolute;
+    top:0;
+}

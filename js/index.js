@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded',function () {
+    window.addEventListener('DOMContentLoaded',function () {
     /*获取所有li*/
     var headerInnerlis = document.querySelectorAll('.nav li');
     //获取小箭头
@@ -14,7 +14,9 @@ window.addEventListener('DOMContentLoaded',function () {
     var contentRightDotNodes = document.querySelectorAll('.content .content-dot li');
     //获取第五屏ul
     var teamListsNodes = document.querySelectorAll('.team-inner .team-lists li');
-    var teamListsNode = document.querySelectorAll('.team-inner .team-lists');
+    var teamListsNode = document.querySelector('.team-inner .team-lists');
+
+
     //获取contentNode高度
     var contentH = contentNode.offsetHeight;
     //定义时间接受变量
@@ -153,7 +155,7 @@ window.addEventListener('DOMContentLoaded',function () {
         //解决打开控制台内容区位置
         // console.log(arrowNode.offsetLeft)
         contentInnerNode.style.top = num * -contentH+'px';
-        
+
     }
 
 
@@ -228,33 +230,120 @@ window.addEventListener('DOMContentLoaded',function () {
     }
 
 
-   //第五屏
+    //第五屏
     fiveScreenHandle();
     function fiveScreenHandle() {
+        var width = teamListsNodes[0].offsetWidth;
+        var height = teamListsNodes[0].offsetHeight;
+        var canvas = null;
+        var timer1 = null;
+        var timer2 = null;
         //downDon鼠标移入移出
         fiveClick()
         function fiveClick() {
             for (var i = 0; i < teamListsNodes.length; i++) {
+              teamListsNodes[i].index = i;
                 teamListsNodes[i].onmouseenter = function () {
                     for (var j = 0; j < teamListsNodes.length; j++) {
-
                         teamListsNodes[j].className = 'active'
                     }
+                  //气泡效果
+                  if(!canvas){
+                    //  创建画布
+                    canvas = document.createElement('canvas');
+                    //
+                    canvas.width = width;
+                    canvas.height = height;
+                    canvas.className = 'canvas';
+                    //创建圆
+                    bubble(canvas);
+                    teamListsNode.appendChild(canvas)
+                  }
                     this.className = '';
+                  //画布移动位置
+                  canvas.style.left = this.index * width + 'px';
+
                 }
                 // 鼠标移出
-                teamListsNodes[i].onmouseleave = function () {
+                teamListsNode.onmouseleave = function () {
                     for (var j = 0; j < teamListsNodes.length; j++) {
-
                         teamListsNodes[j].className = ''
                     }
+                  //  清除画布
+                  canvas.remove();
+                  canvas = null;
+                  //清除定时器
+                  clearInterval(timer1);
+                  clearInterval(timer2);
                 }
             }
+        }
 
+        //气泡
+        function bubble(canvas) {
+            //如果有这个属性就执行
+            if(canvas.getContext){
+              var ctx = canvas.getContext('2d');
+              var width = canvas.width;
+              var height = canvas.height;
+              var arr = [];
+
+            //生成圆
+           timer1 = setInterval(function () {
+              var r = Math.round(Math.random() * 255);
+              var g = Math.round(Math.random() * 255);
+              var b = Math.round(Math.random() * 255);
+              var c_r = Math.round(Math.random() * 8 +2);
+              var x = Math.round(Math.random() * width);
+              var y = height + c_r;
+              var s = Math.round(Math.random() * 50 + 20);
+
+              //压入数组
+              arr.push({
+                r : r,
+                g : g,
+                b : b,
+                x : x,
+                y : y,
+                s : s,
+                c_r : c_r,
+                deg : 0
+              },50)
+            })
+              //创建圆
+             timer2 = setInterval(function () {
+               //清除画布山上次的元素
+               ctx.clearRect(0,0,width,height);
+               //遍历数组
+               for (var i = 0; i < arr.length; i++) {
+                 var itms = arr[i];
+                  itms.deg += 6;
+                  //求弧度
+                  var rad = itms.deg * Math.PI / 180;
+
+                 var x = itms.x + Math.sin(rad) * itms.s;
+                 var y = itms.y - rad * itms.s;
+
+                  if( i <= -itms.c_r){
+                    arr.splice(i,1);
+                    continue;
+                  }
+                  //设置样式
+                  ctx.fillStyle = 'rgb('+ itms.r +','+ itms.g +','+ itms.b +')';
+                  //开始画
+                  ctx.beginPath();
+                  //画圆
+                  ctx.arc(x,y,itms.c_r,0,2 * Math.PI);
+                  //填充圆
+                  ctx.fill();
+                }
+
+              },1000/60)
+
+            }
         }
     }
 
 
-
-})
+    })
 
