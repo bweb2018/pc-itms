@@ -23,7 +23,8 @@
     var timer= 0;
     //定义一个计数器
     var num = 0;
-
+    var nowIndex = 0;
+    var lastIndex = 0;
         //头部部分
     headerHandle();
     function headerHandle() {
@@ -36,8 +37,6 @@
             arrowNode.style.left = headerInnerlis[0].getBoundingClientRect().left + headerInnerlis[0].offsetWidth/2 - arrowWidthNode + 'px';
         }
        //
-       // console.log(arrowNode.style.left)
-       //  console.log(headerInnerlis[0].getBoundingClientRect().left)
 
         //所有Li添加点击事件
         for (var i = 0; i < headerInnerlis.length; i++) {
@@ -46,47 +45,41 @@
             contentRightDotNodes[i].index = i;
             headerInnerlis[i].onclick = function () {
                 //清除上次的样式
-                contentRightDotNodes[num].className = '';
-                downNodes[num].style.width = '';
-                num = this.index;
-                move(num)
+                contentRightDotNodes[lastIndex].className = '';
+                downNodes[lastIndex].style.width = '';
+                nowIndex = this.index;
+                move(nowIndex)
                 // console.log(num)
                 // console.log(arrowWidthNode)
             }
             //内容区右侧小圆点移动
             contentRightDotNodes[i].onclick = function () {
                 //清除上次的样式
-                contentRightDotNodes[num].className = '';
-                downNodes[num].style.width = '';
-                num = this.index;
-                move(num)
+              contentRightDotNodes[lastIndex].className = '';
+                nowIndex = this.index;
+                lastIndex = nowIndex;
+                move(nowIndex)
             }
         }
     }
 
     // 公共区域move
-    function move(num) {
+    function move(nowIndex) {
+      contentRightDotNodes[lastIndex].className = '';
+      //清除上次的样式
+      downNodes[lastIndex].style.width = '';
         //设置当前小箭头宽度为100%
-        downNodes[num].style.width = '100%';
+        downNodes[nowIndex].style.width = '100%';
         // console.log(this.index)
         //小箭头移动
-        arrowNode.style.left = headerInnerlis[num].getBoundingClientRect().left +headerInnerlis[num].offsetWidth/2 - arrowWidthNode +'px';
+        arrowNode.style.left = headerInnerlis[nowIndex].getBoundingClientRect().left +headerInnerlis[nowIndex].offsetWidth/2 - arrowWidthNode +'px';
         //内容区移动
-        contentInnerNode.style.top = num * -contentH + 'px';
+        contentInnerNode.style.top = nowIndex * -contentH + 'px';
         //内容区右侧小圆点移动
-        rightDot();
+      contentRightDotNodes[nowIndex].className = 'active';
+        lastIndex = nowIndex;
     }
 
-    //内容区小圆点
-    function rightDot() {
-        for (var i = 0 ; i < contentRightDotNodes.length ; i++) {
-            // num = i;
-            // num = this.index;
-            contentRightDotNodes[i].className = '';console.log(num)
-
-        }
-        contentRightDotNodes[num].className = 'active';console.log(num)
-    }
     //内容区
     contentHandle();
     function contentHandle() {
@@ -98,9 +91,7 @@
                event = event||window.event;
                    //清除上次定时器
                    clearTimeout(timer)
-                   //清除上次的样式
-                   rightDot();
-                   downNodes[num].style.width = '';
+
                    timer = setTimeout(function () {
                        var flag='';
                        //ie/chrome
