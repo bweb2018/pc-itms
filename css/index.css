@@ -112,14 +112,6 @@ img{display: block;}
 .content-inner>li:nth-child(5){
     background: url("../img/bg5.jpg");
 }
-.content-inner section{
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50% ,-50%);
-    width: 1100px;
-    height:520px;
-}
 /*内容区右边小圆点区*/
 
 .content-dot{
@@ -141,14 +133,69 @@ img{display: block;}
     background: yellow !important;
 }
 
+
+
+/*开机动画*/
+.boot-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  /*background: #009ee0;*/
+  z-index: 20;
+}
+.boot-animation .top{
+  position: absolute;
+  top: 0;
+  left:0;
+  width:100%;
+  height:50%;
+  background: #009ee0;
+  transition: height 1s;
+
+}
+
+.boot-animation .bottom{
+  position: absolute;
+  left: 0;
+  bottom:0;
+  width:100%;
+  height:50%;
+  background: #009ee0;
+  transition: height 1s;
+}
+.boot-animation .line{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  /*width:0;*/
+  height:6px;
+  background: white;
+  transition: width 0.5s;
+}
+
 /*第一屏*/
 
 /*轮播*/
-.homme .section{
+.homme{
+    position: relative;
 
+}
+.homme-inner{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -260px;
+    margin-left: -550px;
+    width: 1100px;
+    height: 520px;
+    transition: transform 1s, opacity 1s;
 }
 .homme-carousel{
     position: relative;
+    width: 100%;
     height:100%;
     transform-style: preserve-3d;
     perspective: 1000px;
@@ -260,15 +307,21 @@ img{display: block;}
 
 
 /*第二屏*/
-.content-inner{
+.course{
+    overflow: hidden;
+}
+.course-inner{
     position: relative;
+
 }
 .course-title{
     margin: 50px;
 }
 .course-content{
+    position: relative;
     width:400px;
     margin-left: 50px;
+    z-index: 10;
 }
 .course-lists{
     position: absolute;
@@ -286,6 +339,7 @@ img{display: block;}
     transform-style: preserve-3d;
     box-sizing: border-box;
     transition: transform 2s;
+    z-index: 10;
 }
 
 .course-lists li .back{
@@ -344,7 +398,36 @@ img{display: block;}
 .course-background li:nth-child(5){
     right: 524px;
 }
-
+.plane-top{
+    background-image: url("../img/plane1.png");
+    background-repeat: no-repeat;
+    width:359px;
+    height:283px;
+    position:absolute;
+    left:300px;
+    top:-100px;
+    transition:1s;
+}
+.plane-center{
+    background-image: url("../img/plane2.png");
+    background-repeat: no-repeat;
+    width:309px;
+    height:249px;
+    position:absolute;
+    left:-100px;
+    top:200px;
+    transition:1s;
+}
+.plane-bottom{
+    background-image: url("../img/plane3.png");
+    background-repeat: no-repeat;
+    width:230px;
+    height:182px;
+    position:absolute;
+    left:300px;
+    top:400px;
+    transition:1s;
+}
 
 /*第三屏*/
 .works-inner{
@@ -352,6 +435,7 @@ img{display: block;}
     transform-style: preserve-3d;
 }
 .works-title{
+    position: relative;
     margin: 50px 0 100px 50px;
 }
 .works-lists{
@@ -366,7 +450,7 @@ img{display: block;}
     height: 133px;
     margin: 0 1px;
     overflow: hidden;
-
+    z-index: 10;
 }
 .works-lists li:last-child{
     width: 332px;
@@ -386,6 +470,7 @@ img{display: block;}
     background-image: url("../img/robot.png");
     background-repeat: no-repeat;
     animation: robotMove 5s infinite linear;
+    z-index: 30;
 }
 
 @keyframes robotMove{
@@ -432,10 +517,34 @@ img{display: block;}
 .works-lists li:hover .icon{
     background-position: 0 -35px;
 }
-
+.pencel1{ width:180px;
+    height:97px;
+    background:url(../img/pencel1.png) no-repeat;
+    position:absolute;
+    transition:1s;
+    left:500px;
+    top:0;
+}
+.pencel2{ width:268px;
+    height:38px;
+    background:url(../img/pencel2.png) no-repeat;
+    position:absolute;
+    transition:1s;
+    left:300px;
+    top:250px;
+}
+.pencel3{ width:441px;
+    height:231px;
+    background:url(../img/pencel3.png) no-repeat;
+    position:absolute; transition:1s;
+    left:650px;
+    top:300px;
+}
 
 /*第四屏*/
-
+.about{
+    overflow: hidden;
+}
 .about-inner{
     position: relative;
 }
@@ -451,11 +560,15 @@ img{display: block;}
     position: absolute;
     top: 50px;
     left: 750px;
+    transition: transform 2s;
+    z-index: 20;
 }
 .about-inner div:nth-child(4){
     position: absolute;
     top: 290px;
     left: 600px;
+    transition: transform 2s;
+    z-index: 20;
 }
 .about-inner ul{
     position: absolute;
@@ -463,7 +576,7 @@ img{display: block;}
     left: 0;
     width: 100%;
     height:100%;
-    z-index: 20;
+    /*z-index: 100;*/
 }
 .about-inner li{
     overflow: hidden;
@@ -495,16 +608,16 @@ img{display: block;}
     background-position: -130px -100px;
 }
 
-.shrink-box:hover .box-two{
+.about-inner .shrink-box:hover .box-two{
     transform: translateX(-130px);
 }
-.shrink-box:hover .box-three{
+.about-inner .shrink-box:hover .box-three{
     transform: translateX(130px);
 }
-.shrink-box:hover .box-one{
+.about-inner .shrink-box:hover .box-one{
     transform: translateY(130px);
 }
-.shrink-box:hover .box-four{
+.about-inner .shrink-box:hover .box-four{
     transform: translateY(-130px);
 }
 
