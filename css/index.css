@@ -97,6 +97,15 @@ img{display: block;}
     height:20%;
     background-repeat: no-repeat;
 }
+.content-inner>li section{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -260px;
+  margin-left: -550px;
+  width: 1100px;
+  height: 520px;
+}
 .content-inner>li:nth-child(1){
     background: url("../img/bg1.jpg");
 }
@@ -184,13 +193,7 @@ img{display: block;}
 
 }
 .homme-inner{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -260px;
-    margin-left: -550px;
-    width: 1100px;
-    height: 520px;
+
     transition: transform 1s, opacity 1s;
 }
 .homme-carousel{
